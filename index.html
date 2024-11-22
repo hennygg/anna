@@ -3,17 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Anna</title> <!-- Change the tab title to "For Anna" -->
+    <title>For Anna</title> <!-- Title for the webpage -->
     <style>
-        img {
-            width: 300px;  /* Set image width */
-            height: auto;  /* Maintain aspect ratio */
-            margin: 10px;  /* Add some space around the images */
+        /* Basic styling for the body */
+        body {
+            font-family: Arial, sans-serif; /* Add font style for the text */
+            text-align: center; /* Center the title */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            background-color: #f4f4f4; /* Add a light background color */
         }
+
+        h1 {
+            margin-top: 20px; /* Space above the title */
+            color: #333; /* Set text color */
+        }
+
+        img {
+            width: 100%;  /* Make the image responsive to its container */
+            max-width: 300px;  /* Set a maximum width to avoid large images on big screens */
+            height: auto;  /* Maintain the aspect ratio of the image */
+            margin: 10px;  /* Add space between images */
+            border-radius: 10px;  /* Optional: add rounded corners to images */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow to the images */
+        }
+
+        /* Image container settings */
         .image-container {
             display: flex;  /* Align images in a row */
-            justify-content: center;  /* Center the images */
+            justify-content: center;  /* Center the images horizontally */
             gap: 20px;  /* Space between images */
+            flex-wrap: wrap;  /* Allow images to wrap to the next line on smaller screens */
             padding: 20px 0;  /* Add some padding around the image container */
         }
     </style>
@@ -24,11 +44,22 @@
     <!-- Container for images -->
     <div class="image-container">
         <!-- First image -->
-        <img src="anna.jpg" alt="A picture of my GF">
+        <img src="anna.jpg" 
+             srcset="anna.jpg 600w, anna2.jpg 1000w, anna3.jpg 1500w" 
+             sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw" 
+             alt="A picture of my GF" loading="lazy">
+
         <!-- Second image -->
-        <img src="anna2.jpg" alt="Another picture of my GF">
+        <img src="anna2.jpg" 
+             srcset="anna2.jpg 600w, anna3.jpg 1000w, anna.jpg 1500w" 
+             sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw" 
+             alt="Another picture of my GF" loading="lazy">
+
         <!-- Third image -->
-        <img src="anna3.jpg" alt="Yet another picture of my GF">
+        <img src="anna3.jpg" 
+             srcset="anna3.jpg 600w, anna.jpg 1000w, anna2.jpg 1500w" 
+             sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw" 
+             alt="Yet another picture of my GF" loading="lazy">
     </div>
 </body>
 </html>
