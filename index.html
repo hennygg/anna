@@ -3,13 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Simple Website</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>For Anna</title> <!-- Change the tab title to "For Anna" -->
+    <style>
+        img {
+            width: 300px;  /* Set image width */
+            height: auto;  /* Maintain aspect ratio */
+            margin: 10px;  /* Add some space around the images */
+        }
+        .image-container {
+            display: flex;  /* Align images in a row */
+            justify-content: center;  /* Center the images */
+            gap: 20px;  /* Space between images */
+            padding: 20px 0;  /* Add some padding around the image container */
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>I love my GF</h1>
-        <img src="anna.jpg" alt="A picture of my GF" style="width: 300px; height: auto;">
+    <h1>I love my GF</h1>
+
+    <!-- Container for images -->
+    <div class="image-container">
+        <!-- First image -->
+        <img src="anna.jpg" alt="A picture of my GF">
+        <!-- Second image -->
+        <img src="anna2.jpg" alt="Another picture of my GF">
+        <!-- Third image -->
+        <img src="anna3.jpg" alt="Yet another picture of my GF">
     </div>
 </body>
 </html>
