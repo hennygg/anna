@@ -64,9 +64,21 @@
             height: auto;
             border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block; /* Ensures image is inline with the quote */
         }
 
-        #weather, #time, #quote {
+        #quote {
+            position: absolute;
+            left: 20%;
+            top: 45%;
+            transform: translateY(-50%); /* Vertically center the quote */
+            font-size: 24px;
+            font-style: italic;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        #weather, #time {
             position: fixed;
             color: white;
             font-size: 24px;
@@ -82,13 +94,6 @@
         #time {
             right: 10px;
             top: 10px;
-        }
-
-        #quote {
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-style: italic;
         }
     </style>
 </head>
@@ -179,15 +184,60 @@
             document.getElementById('random-image').src = imageUrl;
         }
 
-        // Display a random quote from GloRilla, Sexy Redd, and Charli XCX
+        // Display a random funny lyric from GloRilla, Sexy Redd, and Charli XCX
         function displayRandomQuote() {
             const quotes = [
-                "GloRilla: 'I'm a boss, don't need a man, I stand on my own.'",
-                "Sexy Redd: 'I’m just doing my thing, keep your head up and stay strong.'",
-                "Charli XCX: 'I just wanna feel like I’m in a movie, that’s all I need.'",
-                "GloRilla: 'I just be myself, I don’t need no validation from nobody.'",
-                "Sexy Redd: 'Love yourself first, that’s the key to everything.'",
-                "Charli XCX: 'Don’t tell me to slow down, I’m living fast, I love it.'"
+    "GloRilla: 'I’m the realest in the room, what they talking ‘bout?'",
+    "Sexy Redd: 'You know I got the drip, yeah, I’m flooding out the city!'",
+    "Charli XCX: 'I just wanna feel like I’m in a movie, that’s all I need!'",
+    "GloRilla: 'I’m just a boss, not a wannabe, I’m living like I should.'",
+    "Sexy Redd: 'I’m too hot to handle, better grab a fan!'",
+    "Charli XCX: 'Don’t tell me to slow down, baby, I’m a fast one!'",
+    "GloRilla: 'Real ones know it’s the grind, not the luck.'",
+    "Sexy Redd: 'My hustle don’t stop, I’m always on my grind.'",
+    "Charli XCX: 'Don’t need no permission, I do what I want!'",
+    "GloRilla: 'My life, my rules, I’m living on my own terms.'",
+    "Sexy Redd: 'I’m a star, they can’t touch my shine!'",
+    "Charli XCX: 'Baby, we’re making history every single day.'",
+    "GloRilla: 'I walk in the room and I own the place.'",
+    "Sexy Redd: 'I came from the bottom, now I’m shining bright!'",
+    "Charli XCX: 'We’re all just living in a fantasy, baby!'",
+    "GloRilla: 'I’m too real to fake it, too hot to handle.'",
+    "Sexy Redd: 'Catching flights and feelings, but never catching me.'",
+    "Charli XCX: 'You’re the one that I want, and I need you now!'",
+    "GloRilla: 'Money on my mind, I’m on my grind.'",
+    "Sexy Redd: 'I’m on top, no one’s ever gonna take my crown!'",
+    "Charli XCX: 'Don’t tell me I can’t do it, I already did it!'",
+    "GloRilla: 'They told me I wouldn’t make it, now I’m making moves.'",
+    "Sexy Redd: 'If you ain’t talking money, I’m not listening.'",
+    "Charli XCX: 'I’m out here chasing dreams, baby, nothing’s gonna stop me.'",
+    "GloRilla: 'I’m living my best life, and I don’t care who’s watching.'",
+    "Sexy Redd: 'I’m a queen, they just don’t know it yet.'",
+    "Charli XCX: 'I live fast, and I’m loving every second of it!'",
+    "GloRilla: 'No one can break my hustle, I’m built different.'",
+    "Sexy Redd: 'I don’t need a crown, I am royalty.'",
+    "Charli XCX: 'You can’t stop me now, I’m on fire!'",
+    "GloRilla: 'I make my own path, I don’t follow the crowd.'",
+    "Sexy Redd: 'I got a dream, and I’m turning it into reality.'",
+    "Charli XCX: 'I’m just living for the moment, no regrets!'",
+    "GloRilla: 'Ain’t no stopping me now, I’m on a roll!'",
+    "Sexy Redd: 'You can hate, but you can’t touch my hustle.'",
+    "Charli XCX: 'I’m the storm they never saw coming!'",
+    "GloRilla: 'They can’t knock me down, I’m built tough.'",
+    "Sexy Redd: 'I got the sauce, and I’m dripping every day.'",
+    "Charli XCX: 'I’m a wild one, never gonna tame me.'",
+    "GloRilla: 'I came from nothing, but I made it to the top.'",
+    "Sexy Redd: 'I work hard and play harder, that’s the vibe.'",
+    "Charli XCX: 'I’m the one they talk about, but never reach.'",
+    "GloRilla: 'Real ones know that the grind never stops.'",
+    "Sexy Redd: 'I make my own rules, no need for validation.'",
+    "Charli XCX: 'I’m too busy being fabulous to care about the haters.'",
+    "GloRilla: 'They doubted me, but I keep proving them wrong.'",
+    "Sexy Redd: 'Money comes easy when you hustle hard.'",
+    "Charli XCX: 'You can’t hold me back, I’m destined for greatness.'",
+    "GloRilla: 'Ain’t nobody got time for drama, I’m out here making moves.'",
+    "Sexy Redd: 'I’m on a mission, and nothing’s stopping me.'",
+    "Charli XCX: 'The future is mine, I’m just living in it.'"
             ];
 
             const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
