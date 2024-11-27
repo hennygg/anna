@@ -3,65 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Anna</title> <!-- Title for the webpage -->
+    <title>For Anna</title>
     <style>
-        /* Basic styling for the body */
         body {
-            font-family: Arial, sans-serif; /* Add font style for the text */
-            text-align: center; /* Center the title */
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
-            background: linear-gradient(45deg, hotpink 25%, #FF69B4 25%, #FF69B4 50%, hotpink 50%, hotpink 75%, #FF69B4 75%, #FF69B4 100%); /* Candy cane stripes */
-            background-size: 56.57px 56.57px; /* Adjusts stripe width */
-            color: white; /* Set text color to white for contrast */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, hotpink 25%, #FF69B4 25%, #FF69B4 50%, hotpink 50%, hotpink 75%, #FF69B4 75%, #FF69B4 100%);
+            background-size: 56.57px 56.57px;
+            color: white;
+            text-align: center;
         }
 
-        h1 {
-            margin-top: 20px; /* Space above the title */
-            color: white; /* Set text color */
+        #password-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        input[type="password"] {
+            padding: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: hotpink;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FF69B4;
+        }
+
+        #content {
+            display: none;
+        }
+
+        .main-body {
+            background: linear-gradient(45deg, hotpink 25%, #FF69B4 25%, #FF69B4 50%, hotpink 50%, hotpink 75%, #FF69B4 75%, #FF69B4 100%);
+            background-size: 56.57px 56.57px;
+            color: white;
+            text-align: center;
         }
 
         img {
-            width: 100%;  /* Make the image responsive to its container */
-            max-width: 300px;  /* Set a maximum width to avoid large images on big screens */
-            height: auto;  /* Maintain the aspect ratio of the image */
-            margin: 10px;  /* Add space between images */
-            border-radius: 10px;  /* Optional: add rounded corners to images */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow to the images */
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Image container settings */
         .image-container {
-            display: flex;  /* Align images in a row */
-            justify-content: center;  /* Center the images horizontally */
-            gap: 20px;  /* Space between images */
-            flex-wrap: wrap;  /* Allow images to wrap to the next line on smaller screens */
-            padding: 20px 0;  /* Add some padding around the image container */
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px 0;
+        }
+
+        .info-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-size: 14px;
+            z-index: 1000;
         }
     </style>
 </head>
 <body>
-    <h1>I love my GF</h1>
-
-    <!-- Container for images -->
-    <div class="image-container">
-        <!-- First image -->
-        <img src="anna.jpg" 
-             srcset="anna.jpg 600w, anna2.jpg 1000w, anna3.jpg 1500w" 
-             sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw" 
-             alt="A picture of my GF" loading="lazy">
-
-        <!-- Second image -->
-        <img src="anna2.jpg" 
-             srcset="anna2.jpg 600w, anna3.jpg 1000w, anna.jpg 1500w" 
-             sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw" 
-             alt="Another picture of my GF" loading="lazy">
-
-        <!-- Third image -->
-        <img src="anna3.jpg" 
-             srcset="anna3.jpg 600w, anna.jpg 1000w, anna2.jpg 1500w" 
-             sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 33vw" 
-             alt="Yet another picture of my GF" loading="lazy">
+    <div id="password-container">
+        <h2>Enter Password</h2>
+        <input type="password" id="password-input" placeholder="Password">
+        <button onclick="checkPassword()">Submit</button>
     </div>
+
+    <div id="content" class="main-body">
+        <!-- Info bar -->
+        <div class="info-bar">
+            <div id="weather">Loading weather...</div>
+            <div id="time">Loading time...</div>
+        </div>
+
+        <h1>I love my GF</h1>
+
+        <div class="image-container">
+            <img src="anna.jpg" alt="A picture of my GF" loading="lazy">
+            <img src="anna2.jpg" alt="Another picture of my GF" loading="lazy">
+            <img src="anna3.jpg" alt="Yet another picture of my GF" loading="lazy">
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const correctPassword = "RubyGale33"; // Set your password here
+            const userPassword = document.getElementById("password-input").value;
+
+            if (userPassword === correctPassword) {
+                document.getElementById("password-container").style.display = "none";
+                document.getElementById("content").style.display = "block";
+                updateTime();
+                fetchWeather();
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
+
+        // Time update function
+        function updateTime() {
+            function getESTTime() {
+                const now = new Date();
+                const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+                const estOffset = -5; // EST offset
+                const est = new Date(utc + estOffset * 3600000);
+                return est.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+
+            const timeElement = document.getElementById("time");
+            timeElement.textContent = `Time (EST): ${getESTTime()}`;
+
+            setInterval(() => {
+                timeElement.textContent = `Time (EST): ${getESTTime()}`;
+            }, 60000);
+        }
+
+        // Weather fetch function
+        async function fetchWeather() {
+            const apiKey = "fb8e862f6071468cc53dc929dfdd0a2e"; // Replace with your OpenWeatherMap API key
+            const city = "Lexington";
+            const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.weather && data.main) {
+                    const temp = Math.round(data.main.temp);
+                    const condition = data.weather[0].description;
+                    document.getElementById("weather").textContent = `Lexington Weather: ${temp}°F, ${condition}`;
+                } else {
+                    document.getElementById("weather").textContent = "Weather data unavailable.";
+                }
+            } catch (error) {
+                document.getElementById("weather").textContent = "Error fetching weather.";
+            }
+        }
+    </script>
 </body>
 </html>
