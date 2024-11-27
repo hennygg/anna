@@ -77,9 +77,8 @@
         /* Floating text for weather and time */
         #weather, #time {
             position: fixed;
-            top: 10px;
             color: white;
-            font-size: 48px; /* Increased font size */
+            font-size: 48px; /* Double the font size */
             z-index: 1000;
             padding: 10px;
         }
@@ -87,10 +86,12 @@
         /* Position the weather on the left and the time on the right */
         #weather {
             left: 10px;
+            top: 10px;
         }
 
         #time {
             right: 10px;
+            top: 10px;
         }
     </style>
 </head>
@@ -110,6 +111,10 @@
             <img src="anna3.jpg" alt="Yet another picture of my GF" loading="lazy">
         </div>
     </div>
+
+    <!-- Floating elements for Weather and Time -->
+    <div id="weather"></div>
+    <div id="time"></div>
 
     <script>
         // Automatically focus the password input field when the page loads
