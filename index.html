@@ -232,7 +232,7 @@
 
         function fetchWeather() {
             const weatherElement = document.getElementById("weather");
-            fetch("https://api.openweathermap.org/data/2.5/weather?q=Lexington&appid=fb8e862f6071468cc53dc929dfdd0a2e&units=metric")
+            fetch("https://api.openweathermap.org/data/2.5/weather?q=Lexington&appid=fb8e862f6071468cc53dc929dfdd0a2e&units=imperial")
                 .then(response => response.json())
                 .then(data => {
                     weatherElement.innerText = `${data.name}: ${data.main.temp}°F, ${data.weather[0].description}`;
