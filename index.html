@@ -57,35 +57,42 @@
             text-align: center;
         }
 
+        /* Center the image and give it rounded corners */
         #random-image {
             margin-top: 50px;
-            width: 60%;
-            max-width: 400px;
+            width: 60%; /* Adjust this to control image size */
+            max-width: 400px; /* Prevent it from getting too big */
             height: auto;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            display: inline-block; /* Ensures image is inline with the quote */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
         }
 
-        #quote {
-            position: absolute;
-            left: 20%;
-            top: 45%;
-            transform: translateY(-50%); /* Vertically center the quote */
-            font-size: 24px;
-            font-style: italic;
+        /* Position the quote at the bottom of the image */
+        .quote-container {
+            position: relative;
+            width: 60%; /* Match the image width */
             max-width: 400px;
-            text-align: left;
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 10px;
+            font-size: 18px;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            border-radius: 10px;
+            color: white;
         }
 
+        /* Floating text for weather and time */
         #weather, #time {
             position: fixed;
             color: white;
-            font-size: 24px;
+            font-size: 24px; /* Reduced size (half of previous) */
             z-index: 1000;
             padding: 10px;
         }
 
+        /* Position the weather on the left and the time on the right */
         #weather {
             left: 10px;
             top: 10px;
@@ -110,8 +117,10 @@
         <!-- Random image will be displayed here -->
         <img id="random-image" src="" alt="Random Image" loading="lazy">
 
-        <!-- Random quote will be displayed here -->
-        <div id="quote"></div>
+        <!-- Quote container, centered below the image -->
+        <div id="quote-container" class="quote-container">
+            <!-- The quote will be displayed here -->
+        </div>
     </div>
 
     <!-- Floating elements for Weather and Time -->
@@ -135,7 +144,6 @@
                 document.getElementById("content").style.display = "block";
                 updateTime();
                 fetchWeather();
-                displayRandomQuote();
             } else {
                 alert("Incorrect password. Please try again.");
             }
@@ -179,69 +187,166 @@
                 'anna3.jpg'
             ];
 
+            // Randomly select an image from the array
             const randomImage = images[Math.floor(Math.random() * images.length)];
+
+            // Construct the URL to the raw image in your GitHub repository
             const imageUrl = `https://raw.githubusercontent.com/hennygg/anna/master/${randomImage}`;
+
+            // Set the random image as the src for the image element
             document.getElementById('random-image').src = imageUrl;
+
+            // Display a random quote from the list
+            displayRandomQuote();
         }
 
-        // Display a random funny lyric from GloRilla, Sexy Redd, and Charli XCX
-        function displayRandomQuote() {
-            const quotes = [
-    "GloRilla: 'I’m the realest in the room, what they talking ‘bout?'",
-    "Sexy Redd: 'You know I got the drip, yeah, I’m flooding out the city!'",
-    "Charli XCX: 'I just wanna feel like I’m in a movie, that’s all I need!'",
-    "GloRilla: 'I’m just a boss, not a wannabe, I’m living like I should.'",
-    "Sexy Redd: 'I’m too hot to handle, better grab a fan!'",
-    "Charli XCX: 'Don’t tell me to slow down, baby, I’m a fast one!'",
-    "GloRilla: 'Real ones know it’s the grind, not the luck.'",
-    "Sexy Redd: 'My hustle don’t stop, I’m always on my grind.'",
-    "Charli XCX: 'Don’t need no permission, I do what I want!'",
-    "GloRilla: 'My life, my rules, I’m living on my own terms.'",
-    "Sexy Redd: 'I’m a star, they can’t touch my shine!'",
-    "Charli XCX: 'Baby, we’re making history every single day.'",
-    "GloRilla: 'I walk in the room and I own the place.'",
-    "Sexy Redd: 'I came from the bottom, now I’m shining bright!'",
-    "Charli XCX: 'We’re all just living in a fantasy, baby!'",
-    "GloRilla: 'I’m too real to fake it, too hot to handle.'",
-    "Sexy Redd: 'Catching flights and feelings, but never catching me.'",
-    "Charli XCX: 'You’re the one that I want, and I need you now!'",
-    "GloRilla: 'Money on my mind, I’m on my grind.'",
-    "Sexy Redd: 'I’m on top, no one’s ever gonna take my crown!'",
-    "Charli XCX: 'Don’t tell me I can’t do it, I already did it!'",
-    "GloRilla: 'They told me I wouldn’t make it, now I’m making moves.'",
-    "Sexy Redd: 'If you ain’t talking money, I’m not listening.'",
-    "Charli XCX: 'I’m out here chasing dreams, baby, nothing’s gonna stop me.'",
-    "GloRilla: 'I’m living my best life, and I don’t care who’s watching.'",
-    "Sexy Redd: 'I’m a queen, they just don’t know it yet.'",
-    "Charli XCX: 'I live fast, and I’m loving every second of it!'",
-    "GloRilla: 'No one can break my hustle, I’m built different.'",
-    "Sexy Redd: 'I don’t need a crown, I am royalty.'",
-    "Charli XCX: 'You can’t stop me now, I’m on fire!'",
-    "GloRilla: 'I make my own path, I don’t follow the crowd.'",
-    "Sexy Redd: 'I got a dream, and I’m turning it into reality.'",
-    "Charli XCX: 'I’m just living for the moment, no regrets!'",
-    "GloRilla: 'Ain’t no stopping me now, I’m on a roll!'",
-    "Sexy Redd: 'You can hate, but you can’t touch my hustle.'",
-    "Charli XCX: 'I’m the storm they never saw coming!'",
-    "GloRilla: 'They can’t knock me down, I’m built tough.'",
-    "Sexy Redd: 'I got the sauce, and I’m dripping every day.'",
-    "Charli XCX: 'I’m a wild one, never gonna tame me.'",
-    "GloRilla: 'I came from nothing, but I made it to the top.'",
-    "Sexy Redd: 'I work hard and play harder, that’s the vibe.'",
-    "Charli XCX: 'I’m the one they talk about, but never reach.'",
-    "GloRilla: 'Real ones know that the grind never stops.'",
-    "Sexy Redd: 'I make my own rules, no need for validation.'",
-    "Charli XCX: 'I’m too busy being fabulous to care about the haters.'",
-    "GloRilla: 'They doubted me, but I keep proving them wrong.'",
-    "Sexy Redd: 'Money comes easy when you hustle hard.'",
-    "Charli XCX: 'You can’t hold me back, I’m destined for greatness.'",
-    "GloRilla: 'Ain’t nobody got time for drama, I’m out here making moves.'",
-    "Sexy Redd: 'I’m on a mission, and nothing’s stopping me.'",
-    "Charli XCX: 'The future is mine, I’m just living in it.'"
-            ];
+        // List of quotes and funny lyrics
+        const quotes = [
+            "How can I be homophobic? I blew his fucking brains out",
+        "This Luger will send a Christian to Hell",
+        "Shorty looks so good I used her piss as crab boil",
+        "Nutted so crazy I got 108° fever",
+        "Smoking on Congolese Dick Wick looking for a signal",
+        "I went dark a long time ago",
+        "Packed her asshole so tight she pushed out a pearl",
+        "The fentanyl got me moving like a claymation figure",
+        "Real premium French scatatouille",
+        "Money longer than KD's feet",
+        "Started off shooting dice in the cum slum",
+        "Learned how to load the 9mm Canik and changed the trajectory of everything",
+        "This shit ain't nothing to me, man",
+        "I fuck like it's for survival",
+        "As if it's the last sip of water I'll ever get",
+        "Ribs visible, eyes bloodshot, thrusting away",
+        "Got my cob looking like Mexican street corn",
+        "I'm so violent and sick in the head",
+        "I can't tell if I want to kill my opps or fuck 'em",
+        "Zaza got me feeling like everything gonna be alright",
+        "Got the registered God Particle on my hip",
+        "Ready to have some hickory smoked opp",
+        "Wiped the nut on my AMIRI jeans and got right back to fuckin' work",
+        "Sipping on McDonald's house red",
+        "AK sing like a castrati, ooh-wee!",
+        "I have no morals or belief system",
+        "I have no spirituality or anything that gives my life meaning or structure",
+        "They asked me to shoot, I do it",
+        "I have no character",
+        "Home girl got a nice little turd cutter on her",
+        "Put a bag over his head and sent him to paradise",
+        "The Xan Francisco got me looking and moving like Mr. Bean, I ain't saying shit",
+        "Got a ruptured eardrum from having my ear to the streets for so fucking long",
+        "On a full moon I'll fuck anything",
+        "I'm smoking on that Sumerian Quasimodo carpet bomber obsequious demon whisperer runts",
+        "Pussy boy wanted beef with me over galactic acquisition",
+        "Called his mistress over and put 10 inches on her forehead like Payton Manning",
+        "I'm a street creature",
+        "The weed will have you in purgatory, screaming for eternity",
+        "You will relive every key mistake you've ever made in your life",
+        "Over and over and over again",
+        "I was in the Maybach gripping the stem",
+        "Snipped the banjo string, roamed around Northern Cambodia with an open incision",
+        "They told me I wouldn't shake the city, so I shook that shit like a crying toddler",
+        "Hit the gelato papaya, took a sip of the Jose, everything turned red for 8 minutes",
+        "Woke up in Geneva, oh man, I did it again, didn't I?",
+        "Destroyed his bando with a solar flare",
+        "I'm in the club listening to the brown note",
+        "My dogs will do anything for a Newport, and I mean anything",
+        "They think I'm homosexual the way I'm chasing the sack",
+        "Whippets left me with a drool and a shit-eating grin",
+        "My bitch look like Timothée Chalamet",
+        "I'm a product of the gutter",
+        "I fried up some corn snake for the cuzzos",
+        "The Zaza got me talking like Pingu",
+        "I'm the real goliath grouper",
+        "I'mma need you to suck the pigmentation out of this one, young blood",
+        "Shorty ass so fat I thought I was balls deep in Kyle Lowry",
+        "I only handed back the free world cause' I was bored",
+        "This blunt is overwhelmingly large",
+        "This blunt has a pulse",
+        "This blunt looks like Ray J's dick",
+        "This blunt got veins pumping through it",
+        "This blunt curve right at the tip",
+        "This blunt looks like it's been pushed out",
+        "This blunt has a family somewhere worried as hell",
+        "I ain't even gonna hide it no more",
+        "This blunt feels like a solid, fibrous piece of shit, straight up",
+        "A big meaty piece of shit",
+        "Balanced diets, lots of fruit and vegetables",
+        "Would honestly float in the water, which is a sign of good health",
+        "Husky little fella",
+        "The zaza got me connecting the dots",
+        "There are bugs under my skin, I need to dig them out with a screwdriver",
+        "She broke my heart, had me shadowboxing behind the 7-Eleven in my 2005 Cleveland LeBron Jersey, Zara jeans, and some LRG shoes",
+        "Windows tinted, listening to Tee Grizzley, smoking on a goon rock",
+        "The bugs are back",
+        "I'm smoking on pussy slaw",
+        "The worms in my head won't shut the hell up",
+        "They're telling me to go absolutely fucking stupid on 'em",
+        "I don't even need to brandish the nine",
+        "I'm pissing and drooling all over myself",
+        "Howling and itching to take lives",
+        "Shit, I'm so excited to take lives, I'm literally covered in caca le shitty boy michi",
+        "I can't even take care of myself when I think about this shit",
+        "Smoking a real nuclear shit submarine",
+        "I got this shit figured out",
+        "Smoked a seven gram backwood of shadow whisperer",
+        "Shit had me fucked up in the crib looking up pictures of dogs with human eyes",
+        "I got inter-dimensional demons dropping the pin as we speak",
+        "They'll take anyone back over there",
+        "Unholy doses of Percocet and Hennessy got me shitting in the bed more than the Oakland A's",
+        "I'm back to back with God, shaking the fucking universe",
+        "This is an army of two",
+        "Beat his ass and sent him into an improvement cycle",
+        "He look like Bandman Kevo now",
+        "This zah feel like heroin, this heroin feel like zah",
+        "Flashed it at the parking lot in the Lenox mall",
+        "With the serial number scratched out and everything",
+        "Threw the opp into the particle collider, watched his ass get pulled apart into a million pieces",
+        "Turned his sorry ass into some data",
+        "Stuffed her booty hole with some Sour Diesel and sent her on her way",
+        "That little flesh canoe got a mesquite vibe to it",
+        "Perhaps an apple or cherry wood smoke",
+        "She took a chance and spread it for a Nebraska dollar",
+        "She had a whole speakeasy behind those meat curtains",
+        "The pussy has its own time signature",
+        "The bugs are back",
+        "Ring so heavy I can't answer the phone",
+        "I don't wanna kill them, shut up!",
+        "I don't wanna kill anybody!",
+        "Put the gun down, young man",
+        "There's too much pussy out there to kill yourself",
+        "That pussy tighter than the bulletproof counter window at a White Castle",
+        "How can I be gay? My bitch is homophobic, haha!",
+        "Shout out to my man Cench (Bro, what?)",
+        "Wagwan big one up yaself selectah Dutty Wine roadside gyal, me-ah gon' fuck",
+        "58% THC pre-rolled joints rolled in keef had me reading the book of Revelations",
+        "We are indeed close",
+        "I bought her Chanel bags until there was nothing left in her eyes",
+        "Motherfuckers live in their car and call it 'van life'",
+        "Stop lying to yourself and just say you're homeless, you stupid bum",
+        "I'm at Magic City moving like the government",
+        "I fucked her with my AND1 shoes on and some Dada shorts",
+        "Eating Khloe Kardashian's ass like I'm dying and there's a second chance in there",
+        "I'm a high functioning shooter",
+        "Yeah, I'm big on astrology",
+        "I'm always looking at a fat dirt star every chance I get",
+        "I'm off a rhino pill ready to get my rocks off",
+        "My watch cost 50 bands and I still don't have time for you fuckboys",
+        "Pussy clot",
+        "The casualties you will suffer trying to fuck with me will have you thinking like Magnus Carlson",
+        "I need to kill!",
+        "I need to kill!",
+        "Rome wasn't built in a day but this 9mm certainly was",
+        "Give me the fucking fentanyl",
+        "Just finished on my own stomach, time for some oxtail",
+        "I ain't gon' lie, I'm kind of feeling myself right now, gang",
+        "We smoking eucalyptus pigeon shit",
+        ];
 
+        // Display a random quote
+        function displayRandomQuote() {
             const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-            document.getElementById("quote").textContent = randomQuote;
+            document.getElementById("quote-container").textContent = randomQuote;
         }
 
         // Time update function
@@ -264,24 +369,19 @@
 
         // Weather fetch function
         async function fetchWeather() {
-            const apiKey = "2bebd7a451aec6647a8461edf978a304"; // The new API key
-            const lat = 38.0406; // Lexington latitude
-            const lon = -84.5037; // Lexington longitude
-            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+            const weatherElement = document.getElementById("weather");
+            const city = "Los Angeles"; // Set the city for weather info
+            const apiKey = "YOUR_API_KEY"; // Replace with your API key
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
 
             try {
-                const response = await fetch(url);
+                const response = await fetch(apiUrl);
                 const data = await response.json();
 
-                if (data.weather && data.main) {
-                    const temp = Math.round(data.main.temp);
-                    const condition = data.weather[0].description;
-                    document.getElementById("weather").textContent = `Lexington Weather: ${temp}°F, ${condition}`;
-                } else {
-                    document.getElementById("weather").textContent = "Weather data unavailable.";
-                }
+                const temperature = data.main.temp;
+                weatherElement.textContent = `Weather: ${temperature}°F`;
             } catch (error) {
-                document.getElementById("weather").textContent = "Error fetching weather.";
+                weatherElement.textContent = "Unable to fetch weather data.";
             }
         }
     </script>
