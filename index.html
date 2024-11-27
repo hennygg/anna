@@ -136,19 +136,19 @@
             }
         });
 
-        // Display a random image from the folder
+        // Display a random image from the "images" folder
         function displayRandomImage() {
             const images = [
-                'anna1.jpg',
-                'anna2.jpg',
-                'anna3.jpg', // Add more images as needed
+                'images/anna1.jpg',
+                'images/anna2.jpg',
+                'images/anna3.jpg', // Add more images as needed
             ];
 
             // Randomly select an image from the array
             const randomImage = images[Math.floor(Math.random() * images.length)];
 
             // Set the random image as the src for the image element
-            document.getElementById('random-image').src = `images/${randomImage}`;
+            document.getElementById('random-image').src = randomImage;
         }
 
         // Time update function
