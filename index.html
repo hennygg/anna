@@ -180,7 +180,7 @@
         }
 
         const quotes = [
-        "I am the biggest thing out here, what you talking about? - GloRilla",
+      "I am the biggest thing out here, what you talking about? - GloRilla",
             "I'm a boss, and I make my own rules. - Sexy Redd",
             "You don’t have to like me, but you will respect me. - Charli XCX",
             "If you ain’t got the money, don’t go spend it. - Theo Von",
@@ -232,8 +232,7 @@
 
         function fetchWeather() {
             const weatherElement = document.getElementById("weather");
-            fetch("https://api.openweathermap.org/data/2.5/weather?q=London&appid=fb8e862f6071468cc53dc929dfdd0a2e
-&units=metric")
+            fetch("https://api.openweathermap.org/data/2.5/weather?q=London&appid=YOUR_API_KEY&units=metric")
                 .then(response => response.json())
                 .then(data => {
                     weatherElement.innerText = `${data.name}: ${data.main.temp}°C, ${data.weather[0].description}`;
