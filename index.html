@@ -57,25 +57,28 @@
             text-align: center;
         }
 
-        #random-image {
+        .image-quote-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             margin-top: 50px;
-            width: 60%;
+        }
+
+        #random-image {
+            width: 40%;
             max-width: 400px;
             height: auto;
             border-radius: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-right: 20px; /* Space between image and quote */
         }
 
         .quote-container {
-            position: relative;
-            width: 60%;
+            width: 50%;
             max-width: 400px;
-            margin-top: 10px;
-            margin-left: auto;
-            margin-right: auto;
             padding: 10px;
             font-size: 18px;
-            text-align: center;
+            text-align: left; /* Align text to the left */
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             color: white;
@@ -109,8 +112,10 @@
 
     <div id="content" class="main-body">
         <h1>I love my GF</h1>
-        <img id="random-image" src="" alt="Random Image" loading="lazy">
-        <div id="quote-container" class="quote-container"></div>
+        <div class="image-quote-wrapper">
+            <img id="random-image" src="" alt="Random Image" loading="lazy">
+            <div id="quote-container" class="quote-container"></div>
+        </div>
     </div>
 
     <div id="weather"></div>
@@ -180,7 +185,7 @@
         }
 
         const quotes = [
-      "I am the biggest thing out here, what you talking about? - GloRilla",
+            "I am the biggest thing out here, what you talking about? - GloRilla",
             "I'm a boss, and I make my own rules. - Sexy Redd",
             "You don’t have to like me, but you will respect me. - Charli XCX",
             "If you ain’t got the money, don’t go spend it. - Theo Von",
@@ -232,7 +237,7 @@
 
         function fetchWeather() {
             const weatherElement = document.getElementById("weather");
-            fetch("https://api.openweathermap.org/data/2.5/weather?q=Lexington&appid=fb8e862f6071468cc53dc929dfdd0a2e&units=imperial")
+            fetch("https://api.openweathermap.org/data/2.5/weather?q=Lexington&appid=fb8e862f6071468cc53dc929dfdd0a2e&units=metric")
                 .then(response => response.json())
                 .then(data => {
                     weatherElement.innerText = `${data.name}: ${data.main.temp}°F, ${data.weather[0].description}`;
@@ -244,4 +249,5 @@
     </script>
 </body>
 </html>
+
 
