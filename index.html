@@ -3,146 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Anna</title> <!-- Title for the webpage -->
+    <title>For Anna</title>
     <style>
-        /* Basic styling for the body */
         body {
-            font-family: Garamond, serif; /* Set all text to Garamond font */
-            text-align: center; /* Center the title */
-            margin: 0; /* Remove default margin */
-            padding: 0; /* Remove default padding */
-            background: linear-gradient(45deg, hotpink 25%, #FF69B4 25%, #FF69B4 50%, hotpink 50%, hotpink 75%, #FF69B4 75%, #FF69B4 100%); /* Candy cane stripes */
-            background-size: 56.57px 56.57px; /* Adjusts stripe width */
-            color: white; /* Set text color to white for contrast */
-            visibility: hidden; /* Hide the page content until password is entered */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, hotpink 25%, #FF69B4 25%, #FF69B4 50%, hotpink 50%, hotpink 75%, #FF69B4 75%, #FF69B4 100%);
+            background-size: 56.57px 56.57px;
+            color: white;
+            text-align: center;
         }
 
-        h1 {
-            margin-top: 20px; /* Space above the title */
-            color: white; /* Set text color */
+        #password-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
-        /* Styling for the random image */
-        #random-image {
-            max-width: 60%;  /* Make the image take up 60% of the width */
-            border-radius: 10px;  /* Optional: add rounded corners to images */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow to the images */
-            opacity: 0.6; /* Make the image slightly translucent */
-        }
-
-        /* Container for the random lyric */
-        #random-lyric {
-            position: absolute;
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Adjust for centering */
-            font-size: 2.5em; /* Make the text size large */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Add shadow to text for contrast */
-        }
-
-        /* Password input box styling */
-        #password-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background-color: white;
-            color: black;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        #password-input {
+        input[type="password"] {
             padding: 10px;
-            font-size: 1.2em;
-            width: 100%;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: hotpink;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FF69B4;
+        }
+
+        #content {
+            display: none;
+        }
+
+        .main-body {
+            background: linear-gradient(45deg, hotpink 25%, #FF69B4 25%, #FF69B4 50%, hotpink 50%, hotpink 75%, #FF69B4 75%, #FF69B4 100%);
+            background-size: 56.57px 56.57px;
+            color: white;
+            text-align: center;
+        }
+
+        /* Center the image and give it rounded corners */
+        #random-image {
+            margin-top: 50px;
+            width: 60%; /* Adjust this to control image size */
+            max-width: 400px; /* Prevent it from getting too big */
+            height: auto;
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+        }
+
+        /* Floating text for weather and time */
+        #weather, #time {
+            position: fixed;
+            color: white;
+            font-size: 24px; /* Reduced size (half of previous) */
+            z-index: 1000;
+            padding: 10px;
+        }
+
+        /* Position the weather on the left and the time on the right */
+        #weather {
+            left: 10px;
+            top: 10px;
+        }
+
+        #time {
+            right: 10px;
+            top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>I love my GF</h1>
-
-    <!-- Password Input Box -->
-    <div id="password-box">
-        <input type="password" id="password-input" placeholder="Enter password..." />
+    <div id="password-container">
+        <h2>Enter Password</h2>
+        <input type="password" id="password-input" placeholder="Password">
+        <button onclick="checkPassword()">Submit</button>
     </div>
 
-    <!-- Container for the image -->
-    <div>
-        <img id="random-image" src="" alt="Random Image">
-        <!-- Container for the random lyric -->
-        <div id="random-lyric"></div>
+    <div id="content" class="main-body">
+        <h1>I love my GF</h1>
+
+        <!-- Random image will be displayed here -->
+        <img id="random-image" src="" alt="Random Image" loading="lazy">
+
     </div>
+
+    <!-- Floating elements for Weather and Time -->
+    <div id="weather"></div>
+    <div id="time"></div>
 
     <script>
-        // Correct password
-        const correctPassword = 'ruby';
-        
-        // Password check and show content
-        document.getElementById('password-input').addEventListener('input', function() {
-            const input = document.getElementById('password-input').value;
-            if (input === correctPassword) {
-                document.body.style.visibility = 'visible'; // Show page content
-                document.getElementById('password-box').style.display = 'none'; // Hide password box
+        // Automatically focus the password input field when the page loads
+        window.onload = function() {
+            document.getElementById("password-input").focus(); // Focus on password input
+            displayRandomImage(); // Show a random image
+        };
+
+        // Check if the entered password is correct
+        function checkPassword() {
+            const correctPassword = "ruby"; // Set the new password here
+            const userPassword = document.getElementById("password-input").value;
+
+            if (userPassword === correctPassword) {
+                document.getElementById("password-container").style.display = "none";
+                document.getElementById("content").style.display = "block";
+                updateTime();
+                fetchWeather();
+            } else {
+                alert("Incorrect password. Please try again.");
+            }
+        }
+
+        // Allow Enter key to submit the password
+        document.getElementById("password-input").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
             }
         });
 
-        // Function to get a random lyric from Dracula Flow 5
-        function getRandomLyric() {
-            const lyrics = [
-                "But it’s time I show 'em I’m a soldier",
-                "I had to tell 'em that I’m gettin’ older",
-                "Don’t you know I’m steady climbin’ up the boulder",
-                "Told you I could do this shit and I’m getting bolder",
-                "I’ve been on my grind and now I’m rolling over",
-                "Now I got the game, it’s over, man, I’m colder",
-                "All the things I’m doing now is making me so much bolder"
-            ];
-
-            const randomIndex = Math.floor(Math.random() * lyrics.length);
-            return lyrics[randomIndex];
-        }
-
-        // Function to display the random image with error handling
-        function loadRandomImage() {
+        // Display a random image from the root directory of the repository
+        function displayRandomImage() {
             const images = [
-                "IMG_0705.jpeg", "IMG_0902.JPG", "IMG_0903.JPG", "IMG_1424.jpeg", "IMG_2357.jpeg",
-                "IMG_2566.jpeg", "IMG_2601.jpeg", "IMG_2609.jpeg", "IMG_2613.jpeg", "IMG_2754.jpeg",
-                "IMG_2974.jpeg", "IMG_2986.jpeg", "IMG_3041.jpeg", "IMG_3102.jpeg", "IMG_3104.jpeg",
-                "IMG_5564.jpeg", "IMG_5814.jpeg", "IMG_5840.jpeg", "IMG_6290.jpeg", "IMG_6305.jpeg",
-                "IMG_6613.jpeg", "IMG_6614.jpeg", "anna.jpg", "anna2.jpg", "anna3.jpg"
+                '5BB6ED5A-BA7E-4A6F-A58B-A2E27ADCDC8B.jpeg',
+                'IMG_0705.jpeg',
+                'IMG_0902.JPG',
+                'IMG_0903.JPG',
+                'IMG_1424.jpeg',
+                'IMG_2357.jpeg',
+                'IMG_2566.jpeg',
+                'IMG_2601.jpeg',
+                'IMG_2609.jpeg',
+                'IMG_2613.jpeg',
+                'IMG_2754.jpeg',
+                'IMG_2974.jpeg',
+                'IMG_2986.jpeg',
+                'IMG_3041.jpeg',
+                'IMG_3102.jpeg',
+                'IMG_3104.jpeg',
+                'IMG_5564.jpeg',
+                'IMG_5814.jpeg',
+                'IMG_5840.jpeg',
+                'IMG_6290.jpeg',
+                'IMG_6305.jpeg',
+                'IMG_6613.jpeg',
+                'IMG_6614.jpeg',
+                'anna.jpg',
+                'anna2.jpg',
+                'anna3.jpg'
             ];
 
-            const randomIndex = Math.floor(Math.random() * images.length);
-            const randomImage = images[randomIndex];
-            const imageUrl = `https://raw.githubusercontent.com/hennygg/anna/main/${randomImage}`;
+            // Randomly select an image from the array
+            const randomImage = images[Math.floor(Math.random() * images.length)];
 
-            const imgElement = document.getElementById("random-image");
+            // Construct the URL to the raw image in your GitHub repository
+            const imageUrl = `https://raw.githubusercontent.com/hennygg/anna/master/${randomImage}`;
 
-            // Attempt to load the image
-            imgElement.src = imageUrl;
-
-            // Log for debugging
-            console.log(`Attempting to load image from: ${imageUrl}`);
-
-            imgElement.onload = function() {
-                // Image loaded successfully
-                console.log(`Image loaded: ${imageUrl}`);
-            };
-
-            imgElement.onerror = function() {
-                // Image failed to load, try a fallback image
-                console.log(`Failed to load image: ${imageUrl}`);
-                imgElement.src = "https://via.placeholder.com/400x400?text=Image+Unavailable"; // Placeholder image
-            };
-
-            // Display a random lyric from Dracula Flow 5
-            document.getElementById("random-lyric").textContent = getRandomLyric();
+            // Set the random image as the src for the image element
+            document.getElementById('random-image').src = imageUrl;
         }
 
-        // Call the function to load random image and lyric when the page loads
-        window.onload = loadRandomImage;
+        // Time update function
+        function updateTime() {
+            function getESTTime() {
+                const now = new Date();
+                const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+                const estOffset = -5; // EST offset
+                const est = new Date(utc + estOffset * 3600000);
+                return est.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            }
+
+            const timeElement = document.getElementById("time");
+            timeElement.textContent = `Time (EST): ${getESTTime()}`;
+
+            setInterval(() => {
+                timeElement.textContent = `Time (EST): ${getESTTime()}`;
+            }, 60000);
+        }
+
+        // Weather fetch function
+        async function fetchWeather() {
+            const apiKey = "2bebd7a451aec6647a8461edf978a304"; // The new API key
+            const lat = 38.0406; // Lexington latitude
+            const lon = -84.5037; // Lexington longitude
+            const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.weather && data.main) {
+                    const temp = Math.round(data.main.temp);
+                    const condition = data.weather[0].description;
+                    document.getElementById("weather").textContent = `Lexington Weather: ${temp}°F, ${condition}`;
+                } else {
+                    document.getElementById("weather").textContent = "Weather data unavailable.";
+                }
+            } catch (error) {
+                document.getElementById("weather").textContent = "Error fetching weather.";
+            }
+        }
     </script>
 </body>
 </html>
