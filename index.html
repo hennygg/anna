@@ -136,19 +136,22 @@
             }
         });
 
-        // Display a random image from the "images" folder
+        // Display a random image from the root directory of the repository
         function displayRandomImage() {
             const images = [
-                'images/anna1.jpg',
-                'images/anna2.jpg',
-                'images/anna3.jpg', // Add more images as needed
+                'anna1.jpg',
+                'anna2.jpg',
+                'anna3.jpg', // Add more images as needed
             ];
 
             // Randomly select an image from the array
             const randomImage = images[Math.floor(Math.random() * images.length)];
 
+            // Construct the URL to the raw image in your GitHub repository
+            const imageUrl = `https://raw.githubusercontent.com/your-username/your-repository-name/main/${randomImage}`;
+
             // Set the random image as the src for the image element
-            document.getElementById('random-image').src = randomImage;
+            document.getElementById('random-image').src = imageUrl;
         }
 
         // Time update function
@@ -194,4 +197,3 @@
     </script>
 </body>
 </html>
-
