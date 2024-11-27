@@ -57,28 +57,21 @@
             text-align: center;
         }
 
-        img {
-            width: 100%;
-            max-width: 300px;
+        /* Center the image and give it rounded corners */
+        #random-image {
+            margin-top: 50px;
+            width: 60%; /* Adjust this to control image size */
+            max-width: 400px; /* Prevent it from getting too big */
             height: auto;
-            margin: 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .image-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding: 20px 0;
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
         }
 
         /* Floating text for weather and time */
         #weather, #time {
             position: fixed;
             color: white;
-            font-size: 48px; /* Double the font size */
+            font-size: 24px; /* Reduced size (half of previous) */
             z-index: 1000;
             padding: 10px;
         }
@@ -105,11 +98,9 @@
     <div id="content" class="main-body">
         <h1>I love my GF</h1>
 
-        <div class="image-container">
-            <img src="anna.jpg" alt="A picture of my GF" loading="lazy">
-            <img src="anna2.jpg" alt="Another picture of my GF" loading="lazy">
-            <img src="anna3.jpg" alt="Yet another picture of my GF" loading="lazy">
-        </div>
+        <!-- Random image will be displayed here -->
+        <img id="random-image" src="" alt="Random Image" loading="lazy">
+
     </div>
 
     <!-- Floating elements for Weather and Time -->
@@ -120,11 +111,12 @@
         // Automatically focus the password input field when the page loads
         window.onload = function() {
             document.getElementById("password-input").focus(); // Focus on password input
+            displayRandomImage(); // Show a random image
         };
 
         // Check if the entered password is correct
         function checkPassword() {
-            const correctPassword = "ruby"; // Set your password here
+            const correctPassword = "ruby"; // Set the new password here
             const userPassword = document.getElementById("password-input").value;
 
             if (userPassword === correctPassword) {
@@ -143,6 +135,21 @@
                 checkPassword();
             }
         });
+
+        // Display a random image from the folder
+        function displayRandomImage() {
+            const images = [
+                'anna1.jpg',
+                'anna2.jpg',
+                'anna3.jpg', // Add more images as needed
+            ];
+
+            // Randomly select an image from the array
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+
+            // Set the random image as the src for the image element
+            document.getElementById('random-image').src = `images/${randomImage}`;
+        }
 
         // Time update function
         function updateTime() {
@@ -164,7 +171,7 @@
 
         // Weather fetch function
         async function fetchWeather() {
-            const apiKey = "2bebd7a451aec6647a8461edf978a304"; // Replace with your OpenWeatherMap API key
+            const apiKey = "2bebd7a451aec6647a8461edf978a304"; // The new API key
             const lat = 38.0406; // Lexington latitude
             const lon = -84.5037; // Lexington longitude
             const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
