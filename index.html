@@ -57,20 +57,18 @@
             text-align: center;
         }
 
-        /* Center the image and give it rounded corners */
         #random-image {
             margin-top: 50px;
-            width: 60%; /* Adjust this to control image size */
-            max-width: 400px; /* Prevent it from getting too big */
+            width: 60%;
+            max-width: 400px;
             height: auto;
-            border-radius: 20px; /* Rounded corners */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow */
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        /* Position the quote at the bottom of the image */
         .quote-container {
             position: relative;
-            width: 60%; /* Match the image width */
+            width: 60%;
             max-width: 400px;
             margin-top: 10px;
             margin-left: auto;
@@ -78,21 +76,19 @@
             padding: 10px;
             font-size: 18px;
             text-align: center;
-            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            background-color: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             color: white;
         }
 
-        /* Floating text for weather and time */
         #weather, #time {
             position: fixed;
             color: white;
-            font-size: 24px; /* Reduced size (half of previous) */
+            font-size: 24px;
             z-index: 1000;
             padding: 10px;
         }
 
-        /* Position the weather on the left and the time on the right */
         #weather {
             left: 10px;
             top: 10px;
@@ -113,30 +109,21 @@
 
     <div id="content" class="main-body">
         <h1>I love my GF</h1>
-
-        <!-- Random image will be displayed here -->
         <img id="random-image" src="" alt="Random Image" loading="lazy">
-
-        <!-- Quote container, centered below the image -->
-        <div id="quote-container" class="quote-container">
-            <!-- The quote will be displayed here -->
-        </div>
+        <div id="quote-container" class="quote-container"></div>
     </div>
 
-    <!-- Floating elements for Weather and Time -->
     <div id="weather"></div>
     <div id="time"></div>
 
     <script>
-        // Automatically focus the password input field when the page loads
         window.onload = function() {
-            document.getElementById("password-input").focus(); // Focus on password input
-            displayRandomImage(); // Show a random image
+            document.getElementById("password-input").focus();
+            displayRandomImage();
         };
 
-        // Check if the entered password is correct
         function checkPassword() {
-            const correctPassword = "ruby"; // Set the new password here
+            const correctPassword = "ruby";
             const userPassword = document.getElementById("password-input").value;
 
             if (userPassword === correctPassword) {
@@ -149,14 +136,12 @@
             }
         }
 
-        // Allow Enter key to submit the password
         document.getElementById("password-input").addEventListener("keydown", function(event) {
             if (event.key === "Enter") {
                 checkPassword();
             }
         });
 
-        // Display a random image from the root directory of the repository
         function displayRandomImage() {
             const images = [
                 '5BB6ED5A-BA7E-4A6F-A58B-A2E27ADCDC8B.jpeg',
@@ -187,203 +172,72 @@
                 'anna3.jpg'
             ];
 
-            // Randomly select an image from the array
             const randomImage = images[Math.floor(Math.random() * images.length)];
-
-            // Construct the URL to the raw image in your GitHub repository
             const imageUrl = `https://raw.githubusercontent.com/hennygg/anna/master/${randomImage}`;
-
-            // Set the random image as the src for the image element
             document.getElementById('random-image').src = imageUrl;
 
-            // Display a random quote from the list
             displayRandomQuote();
         }
 
-        // List of quotes and funny lyrics
         const quotes = [
             "How can I be homophobic? I blew his fucking brains out",
-        "This Luger will send a Christian to Hell",
-        "Shorty looks so good I used her piss as crab boil",
-        "Nutted so crazy I got 108° fever",
-        "Smoking on Congolese Dick Wick looking for a signal",
-        "I went dark a long time ago",
-        "Packed her asshole so tight she pushed out a pearl",
-        "The fentanyl got me moving like a claymation figure",
-        "Real premium French scatatouille",
-        "Money longer than KD's feet",
-        "Started off shooting dice in the cum slum",
-        "Learned how to load the 9mm Canik and changed the trajectory of everything",
-        "This shit ain't nothing to me, man",
-        "I fuck like it's for survival",
-        "As if it's the last sip of water I'll ever get",
-        "Ribs visible, eyes bloodshot, thrusting away",
-        "Got my cob looking like Mexican street corn",
-        "I'm so violent and sick in the head",
-        "I can't tell if I want to kill my opps or fuck 'em",
-        "Zaza got me feeling like everything gonna be alright",
-        "Got the registered God Particle on my hip",
-        "Ready to have some hickory smoked opp",
-        "Wiped the nut on my AMIRI jeans and got right back to fuckin' work",
-        "Sipping on McDonald's house red",
-        "AK sing like a castrati, ooh-wee!",
-        "I have no morals or belief system",
-        "I have no spirituality or anything that gives my life meaning or structure",
-        "They asked me to shoot, I do it",
-        "I have no character",
-        "Home girl got a nice little turd cutter on her",
-        "Put a bag over his head and sent him to paradise",
-        "The Xan Francisco got me looking and moving like Mr. Bean, I ain't saying shit",
-        "Got a ruptured eardrum from having my ear to the streets for so fucking long",
-        "On a full moon I'll fuck anything",
-        "I'm smoking on that Sumerian Quasimodo carpet bomber obsequious demon whisperer runts",
-        "Pussy boy wanted beef with me over galactic acquisition",
-        "Called his mistress over and put 10 inches on her forehead like Payton Manning",
-        "I'm a street creature",
-        "The weed will have you in purgatory, screaming for eternity",
-        "You will relive every key mistake you've ever made in your life",
-        "Over and over and over again",
-        "I was in the Maybach gripping the stem",
-        "Snipped the banjo string, roamed around Northern Cambodia with an open incision",
-        "They told me I wouldn't shake the city, so I shook that shit like a crying toddler",
-        "Hit the gelato papaya, took a sip of the Jose, everything turned red for 8 minutes",
-        "Woke up in Geneva, oh man, I did it again, didn't I?",
-        "Destroyed his bando with a solar flare",
-        "I'm in the club listening to the brown note",
-        "My dogs will do anything for a Newport, and I mean anything",
-        "They think I'm homosexual the way I'm chasing the sack",
-        "Whippets left me with a drool and a shit-eating grin",
-        "My bitch look like Timothée Chalamet",
-        "I'm a product of the gutter",
-        "I fried up some corn snake for the cuzzos",
-        "The Zaza got me talking like Pingu",
-        "I'm the real goliath grouper",
-        "I'mma need you to suck the pigmentation out of this one, young blood",
-        "Shorty ass so fat I thought I was balls deep in Kyle Lowry",
-        "I only handed back the free world cause' I was bored",
-        "This blunt is overwhelmingly large",
-        "This blunt has a pulse",
-        "This blunt looks like Ray J's dick",
-        "This blunt got veins pumping through it",
-        "This blunt curve right at the tip",
-        "This blunt looks like it's been pushed out",
-        "This blunt has a family somewhere worried as hell",
-        "I ain't even gonna hide it no more",
-        "This blunt feels like a solid, fibrous piece of shit, straight up",
-        "A big meaty piece of shit",
-        "Balanced diets, lots of fruit and vegetables",
-        "Would honestly float in the water, which is a sign of good health",
-        "Husky little fella",
-        "The zaza got me connecting the dots",
-        "There are bugs under my skin, I need to dig them out with a screwdriver",
-        "She broke my heart, had me shadowboxing behind the 7-Eleven in my 2005 Cleveland LeBron Jersey, Zara jeans, and some LRG shoes",
-        "Windows tinted, listening to Tee Grizzley, smoking on a goon rock",
-        "The bugs are back",
-        "I'm smoking on pussy slaw",
-        "The worms in my head won't shut the hell up",
-        "They're telling me to go absolutely fucking stupid on 'em",
-        "I don't even need to brandish the nine",
-        "I'm pissing and drooling all over myself",
-        "Howling and itching to take lives",
-        "Shit, I'm so excited to take lives, I'm literally covered in caca le shitty boy michi",
-        "I can't even take care of myself when I think about this shit",
-        "Smoking a real nuclear shit submarine",
-        "I got this shit figured out",
-        "Smoked a seven gram backwood of shadow whisperer",
-        "Shit had me fucked up in the crib looking up pictures of dogs with human eyes",
-        "I got inter-dimensional demons dropping the pin as we speak",
-        "They'll take anyone back over there",
-        "Unholy doses of Percocet and Hennessy got me shitting in the bed more than the Oakland A's",
-        "I'm back to back with God, shaking the fucking universe",
-        "This is an army of two",
-        "Beat his ass and sent him into an improvement cycle",
-        "He look like Bandman Kevo now",
-        "This zah feel like heroin, this heroin feel like zah",
-        "Flashed it at the parking lot in the Lenox mall",
-        "With the serial number scratched out and everything",
-        "Threw the opp into the particle collider, watched his ass get pulled apart into a million pieces",
-        "Turned his sorry ass into some data",
-        "Stuffed her booty hole with some Sour Diesel and sent her on her way",
-        "That little flesh canoe got a mesquite vibe to it",
-        "Perhaps an apple or cherry wood smoke",
-        "She took a chance and spread it for a Nebraska dollar",
-        "She had a whole speakeasy behind those meat curtains",
-        "The pussy has its own time signature",
-        "The bugs are back",
-        "Ring so heavy I can't answer the phone",
-        "I don't wanna kill them, shut up!",
-        "I don't wanna kill anybody!",
-        "Put the gun down, young man",
-        "There's too much pussy out there to kill yourself",
-        "That pussy tighter than the bulletproof counter window at a White Castle",
-        "How can I be gay? My bitch is homophobic, haha!",
-        "Shout out to my man Cench (Bro, what?)",
-        "Wagwan big one up yaself selectah Dutty Wine roadside gyal, me-ah gon' fuck",
-        "58% THC pre-rolled joints rolled in keef had me reading the book of Revelations",
-        "We are indeed close",
-        "I bought her Chanel bags until there was nothing left in her eyes",
-        "Motherfuckers live in their car and call it 'van life'",
-        "Stop lying to yourself and just say you're homeless, you stupid bum",
-        "I'm at Magic City moving like the government",
-        "I fucked her with my AND1 shoes on and some Dada shorts",
-        "Eating Khloe Kardashian's ass like I'm dying and there's a second chance in there",
-        "I'm a high functioning shooter",
-        "Yeah, I'm big on astrology",
-        "I'm always looking at a fat dirt star every chance I get",
-        "I'm off a rhino pill ready to get my rocks off",
-        "My watch cost 50 bands and I still don't have time for you fuckboys",
-        "Pussy clot",
-        "The casualties you will suffer trying to fuck with me will have you thinking like Magnus Carlson",
-        "I need to kill!",
-        "I need to kill!",
-        "Rome wasn't built in a day but this 9mm certainly was",
-        "Give me the fucking fentanyl",
-        "Just finished on my own stomach, time for some oxtail",
-        "I ain't gon' lie, I'm kind of feeling myself right now, gang",
-        "We smoking eucalyptus pigeon shit",
+            "This Luger will send a Christian to Hell",
+            "Shorty looks so good I used her piss as crab boil",
+            "Nutted so crazy I got 108° fever",
+            "Smoking on Congolese Dick Wick looking for a signal",
+            "I went dark a long time ago",
+            "Packed her asshole so tight she pushed out a pearl",
+            "The fentanyl got me moving like a claymation figure",
+            "Real premium French scatatouille",
+            "Money longer than KD's feet",
+            "Started off shooting dice in the cum slum",
+            "Learned how to load the 9mm Canik and changed the trajectory of everything",
+            "This shit ain't nothing to me, man",
+            "I fuck like it's for survival",
+            "As if it's the last sip of water I'll ever get",
+            "Ribs visible, eyes bloodshot, thrusting away",
+            "Got my cob looking like Mexican street corn",
+            "I'm so violent and sick in the head",
+            "I can't tell if I want to kill my opps or fuck 'em",
+            "Zaza got me feeling like everything gonna be alright",
+            "Got the registered God Particle on my hip",
+            "Ready to have some hickory smoked opp",
+            "Wiped the nut on my AMIRI jeans and got right back to fuckin' work",
+            "Sipping on McDonald's house red",
+            "AK sing like a castrati, ooh-wee!"
         ];
 
-        // Display a random quote
         function displayRandomQuote() {
-            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-            document.getElementById("quote-container").textContent = randomQuote;
+            const randomQuotes = [];
+            while (randomQuotes.length < 3) {
+                const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+                if (!randomQuotes.includes(randomQuote)) {
+                    randomQuotes.push(randomQuote);
+                }
+            }
+            document.getElementById("quote-container").innerHTML = randomQuotes.join("<br><br>");
         }
 
-        // Time update function
         function updateTime() {
-            function getESTTime() {
-                const now = new Date();
-                const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-                const estOffset = -5; // EST offset
-                const est = new Date(utc + estOffset * 3600000);
-                return est.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            }
-
             const timeElement = document.getElementById("time");
-            timeElement.textContent = `Time (EST): ${getESTTime()}`;
-
             setInterval(() => {
-                timeElement.textContent = `Time (EST): ${getESTTime()}`;
-            }, 60000);
+                const now = new Date();
+                timeElement.innerText = now.toLocaleTimeString();
+            }, 1000);
         }
 
-        // Weather fetch function
-        async function fetchWeather() {
+        function fetchWeather() {
             const weatherElement = document.getElementById("weather");
-            const city = "Los Angeles"; // Set the city for weather info
-            const apiKey = "YOUR_API_KEY"; // Replace with your API key
-            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
-
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
-
-                const temperature = data.main.temp;
-                weatherElement.textContent = `Weather: ${temperature}°F`;
-            } catch (error) {
-                weatherElement.textContent = "Unable to fetch weather data.";
-            }
+            fetch("https://api.openweathermap.org/data/2.5/weather?q=London&appid=2bebd7a451aec6647a8461edf978a304&units=metric")
+                .then(response => response.json())
+                .then(data => {
+                    weatherElement.innerText = `${data.name}: ${data.main.temp}°C, ${data.weather[0].description}`;
+                })
+                .catch(error => {
+                    weatherElement.innerText = "Weather data not available";
+                });
         }
     </script>
 </body>
 </html>
+
