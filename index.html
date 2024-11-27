@@ -180,31 +180,35 @@
         }
 
         const quotes = [
-            "How can I be homophobic? I blew his fucking brains out",
-            "This Luger will send a Christian to Hell",
-            "Shorty looks so good I used her piss as crab boil",
-            "Nutted so crazy I got 108° fever",
-            "Smoking on Congolese Dick Wick looking for a signal",
-            "I went dark a long time ago",
-            "Packed her asshole so tight she pushed out a pearl",
-            "The fentanyl got me moving like a claymation figure",
-            "Real premium French scatatouille",
-            "Money longer than KD's feet",
-            "Started off shooting dice in the cum slum",
-            "Learned how to load the 9mm Canik and changed the trajectory of everything",
-            "This shit ain't nothing to me, man",
-            "I fuck like it's for survival",
-            "As if it's the last sip of water I'll ever get",
-            "Ribs visible, eyes bloodshot, thrusting away",
-            "Got my cob looking like Mexican street corn",
-            "I'm so violent and sick in the head",
-            "I can't tell if I want to kill my opps or fuck 'em",
-            "Zaza got me feeling like everything gonna be alright",
-            "Got the registered God Particle on my hip",
-            "Ready to have some hickory smoked opp",
-            "Wiped the nut on my AMIRI jeans and got right back to fuckin' work",
-            "Sipping on McDonald's house red",
-            "AK sing like a castrati, ooh-wee!"
+        "I am the biggest thing out here, what you talking about? - GloRilla",
+            "I'm a boss, and I make my own rules. - Sexy Redd",
+            "You don’t have to like me, but you will respect me. - Charli XCX",
+            "If you ain’t got the money, don’t go spend it. - Theo Von",
+            "Happiness can be found even in the darkest of times, if one only remembers to turn on the light. - Dumbledore",
+            "A wizard is never late, nor is he early, he arrives precisely when he means to. - Gandalf",
+            "The happiness of your life depends upon the quality of your thoughts. - Marcus Aurelius",
+            "I mustn't run away. - Shinji Ikari (Neon Genesis Evangelion)",
+            "I will not die like this. - Guts (Berserk)",
+            "The world is cruel, but it is also very beautiful. - Thors (Vinland Saga)",
+            "The greatest victory is that which requires no battle. - Sun Tzu",
+            "I am a god, so hurry up with my damn massage. - Kanye West",
+            "There are no limits to what you can accomplish, except the limits you place on your own thinking. - Brian Tracy",
+            "Waste no more time arguing about what a good man should be. Be one. - Marcus Aurelius",
+            "I don’t want to be a hero, I just want to live. - Asuka Langley Soryu (Neon Genesis Evangelion)",
+            "Death is merely the next step. - Griffith (Berserk)",
+            "The greatest battle is not against others but against your own fear. - Thorfinn (Vinland Saga)",
+            "Time will pass, and seasons will change, but the best people are those who continue to grow. - Marcus Aurelius",
+            "Everything ends. It’s just a matter of when. - Guts (Berserk)",
+            "The strongest warriors aren’t the ones who never fall, but the ones who rise every time they do. - Thorfinn (Vinland Saga)",
+            "Happiness is found in the darkest times if you remember to turn on the light. - Dumbledore",
+            "Let go of your fear. There’s only one life to live. - Sexy Redd",
+            "I would rather die on my feet than live on my knees. - Thors (Vinland Saga)",
+            "I’m the one who’s been broken. But that’s not who I am anymore. - Shinji Ikari (Neon Genesis Evangelion)",
+            "If you ain't got the money, don't go spend it. - Theo Von",
+            "You must be the change you wish to see in the world. - Mahatma Gandhi",
+            "The path to freedom begins with the heart. - Eren Jaeger (Attack on Titan)",
+            "The greatest battle is not against others but against your own fear. - Thorfinn (Vinland Saga)",
+            "I am not afraid... I was born to do this. - Joan of Arc"
         ];
 
         function displayRandomQuote() {
@@ -228,7 +232,8 @@
 
         function fetchWeather() {
             const weatherElement = document.getElementById("weather");
-            fetch("https://api.openweathermap.org/data/2.5/weather?q=London&appid=2bebd7a451aec6647a8461edf978a304&units=metric")
+            fetch("https://api.openweathermap.org/data/2.5/weather?q=London&appid=fb8e862f6071468cc53dc929dfdd0a2e
+&units=metric")
                 .then(response => response.json())
                 .then(data => {
                     weatherElement.innerText = `${data.name}: ${data.main.temp}°C, ${data.weather[0].description}`;
